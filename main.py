@@ -112,12 +112,66 @@ for i in set_2:
 for i in set_3:
     if i not in set_1 and i not in set_2:
         print(i)
-'''
 
 #6th
 text = 'обратный порядок слов'
+lst = text.split()
+lst.reverse()
+print(*lst)
+
+
+#7th
+text = 'обратный порядок слов'
+lst = text.split()
+len_lst = []
+for i in lst:
+    len_lst.append(len(i))
+print(min(len_lst))
+
+
+#9th
+text = 'слов обратный слов порядок'
+lst = text.split()
+
+short_lst = lst[1:]
+b_count = 0
+for i in lst:
+    for k in short_lst:
+        if i == k:
+            print(i)
+            b_count = 1
+            break
+    else:
+        short_lst = short_lst[1:]
+    if b_count == 1:
+        break
+
+
+#8th
+text = 'обратный слов порядок'
 lst = text.split()
 lst = sorted(lst, reverse=True)
 print(*lst)
 
 
+#10th
+text = 'обратный обратный порядок слов'
+lst = text.split()
+def fst(x):
+    if x == lst[0]:
+        return False
+    return True
+
+def rep(x):
+    ls = x.split()
+    st = set(ls)
+    if len(ls) == len(st):
+        return True
+    return False
+
+for i in lst[1:]:
+    if rep(i) + fst(i) == 2:
+        print(i)
+'''
+
+#11th
