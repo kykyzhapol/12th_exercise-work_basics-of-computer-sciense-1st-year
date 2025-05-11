@@ -172,6 +172,124 @@ def rep(x):
 for i in lst[1:]:
     if rep(i) + fst(i) == 2:
         print(i)
-'''
+
 
 #11th
+# Петя - нечетный, Вася - четный
+cities = 'Москва Архангельск Киров'
+lst = cities.split()
+
+
+for i in range(len(lst)-1):
+    if lst[i][-1] == lst[i+1][0].lower():
+        pass
+    else:
+        if (i+1)%2 == 0:
+            print('Петя проиграл')
+        else:
+            print('Вася проиграл')
+        break
+else:
+    if (len(lst)) % 2 == 1:
+        print('Петя выйграл')
+    else:
+        print('Вася выйграл')
+
+#12th
+import keyword
+
+#Как известно, имя в языке Python может содержать только латинские символы,
+#цифры и знак подчеркивания "_". При этом, имя не может начинаться с цифры и не может быть ключевым словом.
+#Напишите программу, которая проверяет введенную строку, может ли она быть именем в языке Python.
+#12th
+name = 'отдмща'
+
+def consist(x):
+    let = []
+    for num in range(26):
+        let.append(chr(ord('A') + num))
+    for num in range(26):
+        let.append(chr(ord('a') + num))
+    for i in x:
+        if (i not in let) and (i not in str([x for x in range(10)])) and (i != '_'):
+            return False
+    return True
+
+def start(x):
+    if x[0] in str([x for x in range(10)]):
+        return False
+    return True
+
+
+def key(x):
+    return keyword.iskeyword(x)
+
+
+if key(name)+start(name)+consist(name) == 2:
+    print('Может')
+else:
+    print('Не может')
+
+
+#13th
+
+#Дима часто пользуется общественным транспортом и всегда проверяет номер билета,
+#является ли он "счастливым". Счастливым считается билет, имеющий в номере четное количество цифр.
+#Причем, сумма цифр первой половины номера равна сумме цифр второй половины.
+#Программа на вход получает последовательность номеров билетов.
+#Ввод номеров должен завершить тогда, когда будет введен "счастливый" билет.
+#Программа должна вывести его порядковый номер. Счет начинается с 1.
+
+
+def two(x):
+    if len(x)%2 == 0:
+        return True
+    return False
+
+def sum_hf(x):
+    half = len(x) // 2
+    numbers = [int(i) for i in x]
+    return sum(numbers[:half]) == sum(numbers[half:])
+entr = '0'
+lst = []
+while two(entr)+sum_hf(entr) != 2:
+    entr = input('-->')
+    lst.append(entr)
+else:
+    print(len(lst))
+
+
+#14th
+name = input('Введите слово -->')
+pron = input('Введите подсказку -->')
+name = name.split()
+print('\n'*25)
+print(*name, sep='')
+print(pron)
+what = list(len(name)*'*')
+print(*what, sep='')
+
+cnt = 0
+guess_count = 0
+while cnt != 9 or guess_count != len(name):
+    choose = input('Буква или слово (0 - буква, 1 - слово)')
+    if choose == 0:
+        let = input()
+        for i in range(len(name)):
+            if name[i] == let:
+                what[i] = name[i]
+                guess_count += 1
+    else:
+        let = input()
+        if let == name:
+            print('победа')
+        else:
+            print('не угадал')
+    cnt+=1
+    if '*' not in what:
+        print('ты выйграл')
+        break
+else:
+    print('проиграл')
+'''
+
